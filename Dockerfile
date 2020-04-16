@@ -8,7 +8,9 @@ RUN wget -O - https://www.stunnel.org/downloads/stunnel-${VERSION}.tar.gz | tar 
  && make install DESTDIR=/stunnel-bin
 
 FROM alpine
-RUN apk add --no-cache openssl
+RUN apk update && \
+    apk add --no-cache bash openssl ca-certificates
+    
 COPY --from=builder /stunnel-bin/etc/stunnel /etc/stunnel
 COPY --from=builder /stunnel-bin/usr/bin/stunnel /usr/bin/stunnel
 COPY --from=builder /stunnel-bin/usr/lib/stunnel /usr/lib/stunnel
