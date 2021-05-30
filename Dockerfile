@@ -1,7 +1,7 @@
 FROM alpine as builder
 RUN apk add --no-cache gcc musl-dev openssl-dev make
 ARG VERSION=5.56
-RUN wget -O - https://www.stunnel.org/downloads/stunnel-${VERSION}.tar.gz | tar xzf - \
+RUN wget -O - ftp://ftp.stunnel.org/stunnel/archive/5.x/stunnel-${VERSION}.tar.gz | tar xzf - \
  && cd /stunnel-${VERSION} \
  && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
  && make \
